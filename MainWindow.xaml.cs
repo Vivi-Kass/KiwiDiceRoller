@@ -29,13 +29,62 @@ namespace KiwiDiceRoller
      */
     public partial class MainWindow : Window
     {
+        //advantage (A), Disadvantage (D), None (N)    
+        private const string kAdvantage = "Adv";
+        private const string kDisadvantage = "Disad";
+        private const string kNoVantage = "N/A";
+
         private bool validInput = true;
+        private int savedNumOfSides = 0; //number of sides the die has
+        private int savedNumOfDice = 0; //number of dice
+        private int savedModifier = 0; //any modifier
+        private int savedDifficultyClass = 0;
+        private string savedAdvantage = kNoVantage; //advantage state
+        private bool savedModPerDie = false; //will the mod be added to each die?
+
 
         private bool ValidInput
         {
             get { return validInput; }
             set { validInput = value; }
         }
+
+        private int SavedNumOfSides
+        {
+            set { savedNumOfSides = value; }
+            get { return savedNumOfSides; }
+        }
+
+        private int SavedNumOfDice
+        {
+            set { savedNumOfDice = value; }
+            get { return savedNumOfDice; }
+        }
+
+        private int SavedModifier
+        {
+            set { savedModifier = value; }
+            get { return savedModifier; }
+        }
+
+        private int SavedDifficultyClass
+        {
+            set { savedDifficultyClass = value; }
+            get { return savedDifficultyClass; }
+        }
+
+        private string SavedAdvantage 
+        {
+            set { savedAdvantage = value; }
+            get { return savedAdvantage; }
+        }
+            
+        private bool SavedModPerDie
+        {
+            set { savedModPerDie = value; }
+            get { return savedModPerDie; }
+        }
+
 
         /*
         * Function: MainNotepad constructor
@@ -69,77 +118,67 @@ namespace KiwiDiceRoller
         private void CheckInput()
         {
             validInput = true;
+
+            //check number of dice
             try
             {
-                if (numOfDice.Text != null || numOfDice.Text != "")
-                {
-                    if (0 >= Convert.ToUInt16(numOfDice.Text)) //unsigned so it is positive
-                    {
-                        validInput = false;
-                    }
-                }
-                else
-                {
-                    validInput = false;
-                }
-                
+               SavedNumOfDice = Convert.ToUInt16(numOfDice.Text); //unsigned so it is positive
+
             }
             catch (Exception)
             {
                 validInput = false;
             }
 
+
+            //check number of sides
             try
             {
-                if (numOfSides.Text != null || numOfSides.Text != "") //unsigned so it is positive
-                {
-                    if (0 >= Convert.ToUInt16(numOfSides.Text))
-                    {
-                        validInput = false;
-                    }
-                }
-                else
-                {
-                    validInput = false;
-                }
+                SavedNumOfSides = Convert.ToUInt16(numOfSides.Text);
             }
             catch (Exception)
             {
                 validInput = false;
             }
 
-            if (modifier.Text != null)
+            //check modifier
+            try
             {
-                if (modifier.Text != "")
+                SavedModifier = Convert.ToInt16(modifier.Text);
+            }
+            catch (Exception)
+            {
+                if (Convert.ToString(modifier.Text) == "") //check if text is blank
                 {
-                    try
-                    {
-                        Convert.ToInt16(modifier.Text);
-                    }
-                    catch (Exception)
-                    {
-                        validInput = false;
-                    }
+                    SavedModifier = 0; //blank, default to 0
                 }
-                
-            }
-            
-
-            if (DifficultyClass.Text != null)
-            {
-                if (DifficultyClass.Text != "")
+                else
                 {
-                    try
-                    {
-                        Convert.ToInt16(DifficultyClass.Text);
-                    }
-                    catch (Exception)
-                    {
-                        validInput = false;
-                    }
-                }           
+                    validInput = false;
+                }
             }
-            
+
+
+            //check DC
+            try
+            {
+                SavedDifficultyClass = Convert.ToInt16(DifficultyClass.Text);
+            }
+            catch (Exception)
+            {
+                if (Convert.ToString(DifficultyClass.Text) == "") //check if text is blank
+                {
+                    SavedDifficultyClass = 0; //blank, default to 0
+                }
+                else
+                {
+                    validInput = false;
+                }
+            }
+
+            //get advantage state
+            savedAdvantage = advantageState.SelectedIndex.ToString();
+
 
             if (validInput == true)
             {
@@ -207,8 +246,9 @@ namespace KiwiDiceRoller
         private void RollButton_Click(object sender, RoutedEventArgs e)
         {
             //give the dice the valid values
-            DiceRoller roll = new DiceRoller(Convert.ToInt16(numOfSides.Text), Convert.ToInt16(numOfDice.Text), Convert.ToInt16(modifier.Text), Convert.ToInt16(DifficultyClass.Text), advantageState.Text, Convert.ToBoolean(modPerDie.IsChecked));
-
+            DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
+            RollResults rollScreen = new RollResults();
+            rollScreen.Show();
 
         }
     }
