@@ -48,5 +48,6 @@ namespace KiwiDiceRoller
         {
             this.Close(); //close window
         }
+
     }
 }
