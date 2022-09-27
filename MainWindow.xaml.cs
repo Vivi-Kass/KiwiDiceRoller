@@ -27,22 +27,5 @@ namespace KiwiDiceRoller
             
         }
 
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = System.Windows.WindowState.Minimized;
-        }
-
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == System.Windows.WindowState.Normal)
-            {
-                this.WindowState = System.Windows.WindowState.Maximized;
-            }
-            else
-            {
-                this.WindowState = System.Windows.WindowState.Normal;
-            }
-        }
-
     }
 }
