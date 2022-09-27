@@ -53,7 +53,6 @@ namespace KiwiDiceRoller
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
 
@@ -133,13 +132,13 @@ namespace KiwiDiceRoller
             }
             
 
-            if (NeedToBeat.Text != null)
+            if (DifficultyClass.Text != null)
             {
-                if (NeedToBeat.Text != "")
+                if (DifficultyClass.Text != "")
                 {
                     try
                     {
-                        Convert.ToInt64(NeedToBeat.Text);
+                        Convert.ToInt64(DifficultyClass.Text);
                     }
                     catch (Exception)
                     {
@@ -200,9 +199,19 @@ namespace KiwiDiceRoller
        * Parameters: object sender, TextChangedEventArgs e
        * Returns: void
        */
-        private void NeedToBeat_TextChanged(object sender, TextChangedEventArgs e)
+        private void DifficultyClass_TextChanged(object sender, TextChangedEventArgs e)
         {
             CheckInput();
         }
+
+
+
+
+
+
+
+
+
+
     }
 }

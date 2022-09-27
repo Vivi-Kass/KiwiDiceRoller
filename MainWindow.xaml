@@ -65,7 +65,7 @@
                 <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Language="en-ca" Text="Modifier"/></TextBlock>
             </Viewbox>
             <Viewbox Grid.Row="2" Grid.Column="5">
-                <TextBox Name="modifier" MinWidth="25" Height="10" Width="20" FontSize="6" TextAlignment="Center" ToolTip="Positive or negative modifier for the dice" TextChanged="Modifier_TextChanged"/>
+                <TextBox Name="modifier" MinWidth="25" Height="10" Width="20" FontSize="6" TextAlignment="Center" ToolTip="Optional positive or negative modifier for the dice" TextChanged="Modifier_TextChanged"/>
             </Viewbox>
 
 
@@ -90,10 +90,10 @@
 
 
             <Viewbox  Grid.Row="4" Grid.Column="9" VerticalAlignment="Bottom">
-                <TextBlock  VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Text="Need To"/><LineBreak/><Run Text="Beat"/></TextBlock>
+                <TextBlock  VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Text="Difficulty"/><LineBreak/><Run Text="Class (DC)"/></TextBlock>
             </Viewbox>
             <Viewbox Grid.Row="5" Grid.Column="9">
-                <TextBox Name="NeedToBeat" MinWidth="25" Height="10" Width="20" FontSize="6" TextAlignment="Center" ToolTip="Needs to beat this number to succeed. Must be equal to or less than the number of sides + mod" TextChanged="NeedToBeat_TextChanged"/>
+                <TextBox Name="DifficultyClass" MinWidth="25" Height="10" Width="20" FontSize="6" TextAlignment="Center" ToolTip="Optional. Needs to beat this number to succeed. Must be equal to or less than the number of sides + mod" TextChanged="DifficultyClass_TextChanged"/>
             </Viewbox>
         </Grid>
 
