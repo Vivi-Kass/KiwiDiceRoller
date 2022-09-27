@@ -13,15 +13,15 @@ namespace KiwiDiceRoller
     internal class DiceRoller
     {
         //advantage (A), Disadvantage (D), None (N)    
-        private const char kAdvantage = 'A';
-        private const char kDisadvantage = 'D';
-        private const char kNoVantage = 'N';
+        private const string kAdvantage = "Adv";
+        private const string kDisadvantage = "Disad";
+        private const string kNoVantage = "N/A";
 
         private int numOfSides = 0; //number of sides the die has
         private int numOfDice = 0; //number of dice
         private int modifier = 0; //any modifier
         private int difficultyClass = 0;
-        private char advantage = kNoVantage; //advantage state
+        private string advantage = kNoVantage; //advantage state
         private bool modPerDie = false; //will the mod be added to each die?
 
         internal int NumOfSides
@@ -48,7 +48,7 @@ namespace KiwiDiceRoller
             set { difficultyClass = value; }
         }
 
-        internal char Advantage
+        internal string Advantage
         {
             get { return advantage; }
             set { advantage = value; }
@@ -67,7 +67,7 @@ namespace KiwiDiceRoller
         * Parameters: int inputNumOfSides, int inputNumOfDice, int inputModifier, int inputDifficultyClass, char inputAdvantage, bool inputModPerDie
         * Returns: void
         */
-        internal DiceRoller(int inputNumOfSides, int inputNumOfDice, int inputModifier, int inputDifficultyClass, char inputAdvantage, bool inputModPerDie)
+        internal DiceRoller(int inputNumOfSides, int inputNumOfDice, int inputModifier, int inputDifficultyClass, string inputAdvantage, bool inputModPerDie)
         {
             NumOfSides = inputNumOfSides;
             NumOfDice = inputNumOfDice;

@@ -3,7 +3,7 @@
  * Project: KiwiDiceRoller
  * Programmer: Keiran Morton
  * First Version:  (26/09/2022)
- * Description: Desinged in VS 2022 .NET Framework 4.8. This program is a simple dice rolling application.
+ * Description: Desinged in VS 2022 with WPD in .NET Framework 4.8. This program is a simple dice rolling application specialized for Dungeons and Dragons 5th edition.
  */
 using System;
 using System.Collections.Generic;
@@ -30,13 +30,6 @@ namespace KiwiDiceRoller
     public partial class MainWindow : Window
     {
         private bool validInput = true;
-        private int validNumOfDice = 0;
-
-        private int ValidNumOfDice
-        {
-            get { return validNumOfDice; }
-            set { validNumOfDice = value; }
-        }
 
         private bool ValidInput
         {
@@ -80,7 +73,7 @@ namespace KiwiDiceRoller
             {
                 if (numOfDice.Text != null || numOfDice.Text != "")
                 {
-                    if (0 >= Convert.ToInt64(numOfDice.Text))
+                    if (0 >= Convert.ToUInt16(numOfDice.Text)) //unsigned so it is positive
                     {
                         validInput = false;
                     }
@@ -98,9 +91,9 @@ namespace KiwiDiceRoller
 
             try
             {
-                if (numOfSides.Text != null)
+                if (numOfSides.Text != null || numOfSides.Text != "") //unsigned so it is positive
                 {
-                    if (0 >= Convert.ToInt64(numOfSides.Text))
+                    if (0 >= Convert.ToUInt16(numOfSides.Text))
                     {
                         validInput = false;
                     }
@@ -121,7 +114,7 @@ namespace KiwiDiceRoller
                 {
                     try
                     {
-                        Convert.ToInt64(modifier.Text);
+                        Convert.ToInt16(modifier.Text);
                     }
                     catch (Exception)
                     {
@@ -138,7 +131,7 @@ namespace KiwiDiceRoller
                 {
                     try
                     {
-                        Convert.ToInt64(DifficultyClass.Text);
+                        Convert.ToInt16(DifficultyClass.Text);
                     }
                     catch (Exception)
                     {
@@ -205,13 +198,18 @@ namespace KiwiDiceRoller
         }
 
 
+        /*
+       * Function: RollButton_Click
+       * Description: Rolls the dice and prints the results in a new window. Input must be valid before button can be pressed so it will be valid
+       * Parameters: object sender, RoutedEventArgs e
+       * Returns: void
+       */
+        private void RollButton_Click(object sender, RoutedEventArgs e)
+        {
+            //give the dice the valid values
+            DiceRoller roll = new DiceRoller(Convert.ToInt16(numOfSides.Text), Convert.ToInt16(numOfDice.Text), Convert.ToInt16(modifier.Text), Convert.ToInt16(DifficultyClass.Text), advantageState.Text, Convert.ToBoolean(modPerDie.IsChecked));
 
 
-
-
-
-
-
-
+        }
     }
 }

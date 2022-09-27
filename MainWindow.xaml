@@ -42,7 +42,7 @@
             </Grid.RowDefinitions>
 
             <Viewbox Grid.Row="4" Grid.Column="5"  Margin="0,44,0,44" Grid.RowSpan="3">
-                <Button Name="rollButton" Content="Roll Dice!" IsEnabled="False" ToolTip="Roll the dice with the given properties"/>
+                <Button Name="rollButton" Content="Roll Dice!" IsEnabled="False" ToolTip="Roll the dice with the given properties" Click="RollButton_Click"/>
             </Viewbox>
 
             <Viewbox Grid.Row="1" Grid.Column="1"  VerticalAlignment="Bottom">
