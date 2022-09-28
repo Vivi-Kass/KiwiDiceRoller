@@ -295,12 +295,27 @@ namespace KiwiDiceRoller
         {
             //give the dice the valid values
             DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
-            RollResults rollScreen = new RollResults();
-            rollScreen.PrintData(roll.RollNoVantage());
-            rollScreen.Show();
+            PrintData(roll.RollNoVantage());
 
         }
 
-        
+
+
+        /*
+        * Function: PrintData
+        * Description: changes the text in the window to match the data given
+        * Parameters: List<string> diceRolls
+        * Returns: void
+        */
+        private void PrintData(List<string> diceRolls)
+        {
+            for (int i = 0; i < diceRolls.Count; i++)
+            {
+                RollText.Text += diceRolls[i] + "\n";
+            }
+
+        }
+
+
     }
 }

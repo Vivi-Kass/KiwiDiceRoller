@@ -89,7 +89,7 @@
             </Viewbox>
 
             <Viewbox Grid.Row="4" Grid.Column="7" Grid.RowSpan="3" Grid.ColumnSpan="3" StretchDirection="DownOnly">
-                <TextBlock Text="sample"/>
+                <TextBox Background="DarkGray" Grid.Row="1" Name="RollText" Width="1000" Height="1000" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="100" Text=""/>
 
             </Viewbox>
             
