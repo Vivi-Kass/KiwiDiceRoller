@@ -96,7 +96,8 @@ namespace KiwiDiceRoller
 
             for (int i = 1; i <= numOfDice; i++)
             {
-                int generatedNum = rndm.Next(1, NumOfSides); //get the number
+                //when getting rndm.next, num of sides has to add 1. Otherwise the highest side will not roll.
+                int generatedNum = rndm.Next(1, (NumOfSides + 1)); //get the number
                 int generatedNumWithMod = generatedNum + Modifier;
                 string tempResult = "";
 
@@ -196,12 +197,13 @@ namespace KiwiDiceRoller
 
             for (int i = 1; i <= numOfDice; i++)
             {
-                int generatedNumA = rndm.Next(1, NumOfSides); //get the number
+                //when getting rndm.next, num of sides has to add 1. Otherwise the highest side will not roll.
+                int generatedNumA = rndm.Next(1, (NumOfSides + 1)); //get the number
                 int generatedNumWithModA = generatedNumA + Modifier;
                 string tempResultA = "";
 
-                int generatedNumB = rndm.Next(1, NumOfSides); //get the number
-                int generatedNumWithModB = generatedNumA + Modifier;
+                int generatedNumB = rndm.Next(1, (NumOfSides + 1)); //get the number
+                int generatedNumWithModB = generatedNumB + Modifier;
                 string tempResultB = "";
 
                 tempResultA += "Roll " + i.ToString() + "a: "; //Roll #: 

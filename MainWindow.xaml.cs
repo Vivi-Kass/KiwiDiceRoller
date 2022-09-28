@@ -305,6 +305,7 @@ namespace KiwiDiceRoller
             //give the dice the valid values           
             DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
             RollText.IsReadOnly = false; //enable writing
+            ClearRollResults(); //clear the results
             if (advantageState.SelectedIndex == 0) //0 is N/A
             {
                 PrintData(roll.RollNoVantage());
@@ -339,12 +340,12 @@ namespace KiwiDiceRoller
 
 
         /*
-        * Function: ClearButton_Click
+        * Function: ClearRollResults
         * Description: Clear the text from the roll results
-        * Parameters: object sender, RoutedEventArgs e
+        * Parameters: void
         * Returns: void
         */
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        private void ClearRollResults()
         {
             RollText.IsReadOnly = false; //enable writing
             RollText.Text = ""; //clear text
