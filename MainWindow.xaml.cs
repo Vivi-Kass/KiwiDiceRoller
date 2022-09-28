@@ -34,6 +34,12 @@ namespace KiwiDiceRoller
         private const string kDisadvantage = "Disad";
         private const string kNoVantage = "N/A";
 
+        private bool validSides = false;
+        private bool validDice = false;
+        private bool validMod = true;
+        private bool validDC = true;
+
+
         private bool validInput = true;
         private int savedNumOfSides = 0; //number of sides the die has
         private int savedNumOfDice = 0; //number of dice
@@ -85,6 +91,26 @@ namespace KiwiDiceRoller
             get { return savedModPerDie; }
         }
 
+        private bool ValidSides
+        {
+            set { validSides = value; }
+            get { return validSides; }
+        }
+        private bool ValidDice
+        {
+            set { validDice = value; }
+            get { return validDice; }
+        }
+        private bool ValidMod
+        {
+            set { validMod = value; }
+            get { return validMod; }
+        }
+        private bool ValidDC
+        {
+            set { validDC = value; }
+            get { return validDC; }
+        }
 
         /*
         * Function: MainNotepad constructor
@@ -116,20 +142,65 @@ namespace KiwiDiceRoller
         * Returns: void
         */
         private void CheckInput()
-        {
-            validInput = true;
-
-            //check number of dice
-            try
+        {           
+            //Check all input
+            if(ValidDice == true && ValidSides == true && ValidMod == true && ValidDC == true && ValidDC == true)
             {
-               SavedNumOfDice = Convert.ToUInt16(numOfDice.Text); //unsigned so it is positive
-
+                validInput = true;
             }
-            catch (Exception)
+            else
             {
                 validInput = false;
             }
 
+            //get advantage state
+            savedAdvantage = advantageState.SelectedIndex.ToString();
+
+            if (validInput == true)
+            {
+                rollButton.IsEnabled = true;
+            }
+            else 
+            { 
+                rollButton.IsEnabled = false; 
+            }
+        }
+
+
+
+        /*
+        * Function: NumOfDice_TextChanged 
+        * Description: check for valid input
+        * Parameters: object sender, TextChangedEventArgs e
+        * Returns: void
+        */
+        private void NumOfDice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidDice = true;
+
+            //check number of dice
+            try
+            {
+                SavedNumOfDice = Convert.ToUInt16(numOfDice.Text); //unsigned so it is positive
+
+            }
+            catch (Exception)
+            {
+                ValidDice = false;
+            }
+
+
+            CheckInput();
+        }
+       /*
+       * Function: NumOfSides_TextChanged 
+       * Description: check for valid input
+       * Parameters: object sender, TextChangedEventArgs e
+       * Returns: void
+       */
+        private void NumOfSides_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidSides = true;
 
             //check number of sides
             try
@@ -138,9 +209,20 @@ namespace KiwiDiceRoller
             }
             catch (Exception)
             {
-                validInput = false;
+                ValidSides = false;
             }
 
+            CheckInput();
+        }
+        /*
+       * Function: Modifier_TextChanged 
+       * Description: check for valid input
+       * Parameters: object sender, TextChangedEventArgs e
+       * Returns: void
+       */
+        private void Modifier_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidMod = true;
             //check modifier
             try
             {
@@ -154,10 +236,20 @@ namespace KiwiDiceRoller
                 }
                 else
                 {
-                    validInput = false;
+                    ValidMod = false;
                 }
             }
-
+            CheckInput();
+        }
+       /*
+       * Function: NeedToBeat_TextChanged 
+       * Description: check for valid input
+       * Parameters: object sender, TextChangedEventArgs e
+       * Returns: void
+       */
+        private void DifficultyClass_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidDC = true;
 
             //check DC
             try
@@ -172,67 +264,9 @@ namespace KiwiDiceRoller
                 }
                 else
                 {
-                    validInput = false;
+                    ValidDC = false;
                 }
             }
-
-            //get advantage state
-            savedAdvantage = advantageState.SelectedIndex.ToString();
-
-
-            if (validInput == true)
-            {
-                rollButton.IsEnabled = true;
-            }
-            else 
-            { 
-                rollButton.IsEnabled = false; 
-            }
-
-
-        }
-
-
-
-        /*
-        * Function: NumOfDice_TextChanged 
-        * Description: check for valid input
-        * Parameters: object sender, TextChangedEventArgs e
-        * Returns: void
-        */
-        private void NumOfDice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            CheckInput();
-        }
-       /*
-       * Function: NumOfSides_TextChanged 
-       * Description: check for valid input
-       * Parameters: object sender, TextChangedEventArgs e
-       * Returns: void
-       */
-        private void NumOfSides_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CheckInput();
-        }
-        /*
-       * Function: Modifier_TextChanged 
-       * Description: check for valid input
-       * Parameters: object sender, TextChangedEventArgs e
-       * Returns: void
-       */
-        private void Modifier_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CheckInput();
-        }
-        /*
-       * Function: NeedToBeat_TextChanged 
-       * Description: check for valid input
-       * Parameters: object sender, TextChangedEventArgs e
-       * Returns: void
-       */
-        private void DifficultyClass_TextChanged(object sender, TextChangedEventArgs e)
-        {
             CheckInput();
         }
 
@@ -248,6 +282,7 @@ namespace KiwiDiceRoller
             //give the dice the valid values
             DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
             RollResults rollScreen = new RollResults();
+            rollScreen.PrintData(roll.RollNoVantage());
             rollScreen.Show();
 
         }

@@ -26,6 +26,21 @@ namespace KiwiDiceRoller
 
 
 
+        /*
+        * Function: PrintData
+        * Description: changes the text in the window to match the data given
+        * Parameters: List<string> diceRolls
+        * Returns: void
+        */
+        internal void PrintData(List<string> diceRolls)
+        {
+            for(int i = 0; i < diceRolls.Count ;i++)
+            {
+                RollText.Text += diceRolls[i] + "\n";
+            }
+
+        }
+
 
 
 

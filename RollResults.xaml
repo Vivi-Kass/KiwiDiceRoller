@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KiwiDiceRoller"
         mc:Ignorable="d"
-        Title="Roll Results" Height="450" Width="800">
+        Title="Roll Results" Height="500" Width="400" Background="DimGray">
+
+    <Grid>
+        <Viewbox Grid.Row="1" StretchDirection="DownOnly">
+            <TextBox Background="DimGray" Grid.Row="1" Name="RollText" Width="1000" Height="1000" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="36" Text=""/>
+        </Viewbox>
+    </Grid>
     
-    
-    
+
 </Window>
