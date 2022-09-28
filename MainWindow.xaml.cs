@@ -293,9 +293,21 @@ namespace KiwiDiceRoller
        */
         private void RollButton_Click(object sender, RoutedEventArgs e)
         {
-            //give the dice the valid values
+            //give the dice the valid values           
             DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
-            PrintData(roll.RollNoVantage());
+            if (advantageState.SelectedIndex.ToString() == kNoVantage) //no advantage or disadvantage
+            {
+                PrintData(roll.RollNoVantage());
+            }
+            else if (advantageState.SelectedIndex.ToString() == kAdvantage)
+            {
+                PrintData(roll.RollVantage(kAdvantage));
+            }
+            else if (advantageState.SelectedIndex.ToString() == kDisadvantage)
+            {
+                PrintData(roll.RollVantage(kDisadvantage));
+            }
+
 
         }
 
