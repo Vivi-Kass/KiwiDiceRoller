@@ -322,7 +322,6 @@ namespace KiwiDiceRoller
         }
 
 
-
         /*
         * Function: PrintData
         * Description: changes the text in the window to match the data given
