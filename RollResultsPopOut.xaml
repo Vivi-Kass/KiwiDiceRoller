@@ -1,0 +1,15 @@
+﻿<Window x:Class="KiwiDiceRoller.RollResultsPopOut"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KiwiDiceRoller"
+        mc:Ignorable="d"
+        Title="Roll Results" Height="500" Width="400">
+    <Grid>
+        <Viewbox Grid.Row="1" Stretch="UniformToFill">
+            <TextBox Background="DimGray" Grid.Row="1" Name="RollTextCopy" Width="1237" Height="1500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="72" Text="" IsReadOnly="True"/>
+        </Viewbox>
+    </Grid>
+    
+</Window>

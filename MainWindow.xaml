@@ -90,7 +90,7 @@
             </Viewbox>
 
             <Viewbox Grid.Row="4" Grid.Column="7" Grid.RowSpan="3" Grid.ColumnSpan="3" StretchDirection="DownOnly" Stretch="UniformToFill">
-                <TextBox Background="DarkGray" Grid.Row="1" Name="RollText" Width="500" Height="500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="36" Text="" IsReadOnly="True"/>
+                <TextBox Background="DarkGray" Grid.Row="1" Name="RollText" Width="500" Height="500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="36" Text="" IsReadOnly="True" MouseDoubleClick="RollText_MouseDoubleClick"/>
 
             </Viewbox>
    

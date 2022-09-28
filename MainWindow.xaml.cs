@@ -351,5 +351,30 @@ namespace KiwiDiceRoller
             RollText.Text = ""; //clear text
             RollText.IsReadOnly = true; //disable writing
         }
+
+
+        /*
+        * Function: RollText_MouseDoubleClick
+        * Description: copy the text only if there is any from the roll results section to its own pop out window and clear the original
+        * Parameters: object sender, MouseButtonEventArgs e
+        * Returns: void
+        */
+        private void RollText_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (RollText.Text != "") //only if not blank
+            {
+                RollResultsPopOut rrpo = new RollResultsPopOut(); //make the new window
+                rrpo.Show(); //show the new window
+                rrpo.RollTextCopy.IsReadOnly = false;
+                rrpo.RollTextCopy.Text = RollText.Text;
+                rrpo.RollTextCopy.IsReadOnly = true;
+
+                RollText.IsReadOnly = false;
+                RollText.Text = "";
+                RollText.IsReadOnly = true;
+            }
+            
+        }
     }
 }
