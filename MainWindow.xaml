@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KiwiDiceRoller"
         mc:Ignorable="d"
-        Title="Kiwi Dice Roller" Height="300" Width="400" Icon="F:\Pictures\Graphic design stuff\Kiwi logo\Kiwi D20 thick small.ico" Background="DimGray" MinWidth="400" MinHeight="300" Closed="Window_Closed">
+        Title="Kiwi Dice Roller" Height="300" Width="400" Icon="/icon.ico" Background="DimGray" MinWidth="400" MinHeight="300" Closed="Window_Closed">
+
 
     <DockPanel>
         <Grid>
@@ -52,7 +53,7 @@
                 <TextBox Name="numOfSides" MinWidth="25" Height="10" Width="20" FontSize="6" TextAlignment="Center" ToolTip="Number of sides the dice have. Can be anything greater than 2." TextWrapping="Wrap" TextChanged="NumOfSides_TextChanged"/>
             </Viewbox>
 
-            
+
             <Viewbox  Grid.Row="1" Grid.Column="5" VerticalAlignment="Bottom">
                 <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Language="en-ca" Text="Modifier"/></TextBlock>
             </Viewbox>
@@ -92,16 +93,6 @@
                 <TextBox Background="DarkGray" Grid.Row="1" Name="RollText" Width="500" Height="500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="36" Text="" IsReadOnly="True"/>
 
             </Viewbox>
-            
-            
-            
         </Grid>
-
-
-
     </DockPanel>
-
-
-
-
 </Window>
