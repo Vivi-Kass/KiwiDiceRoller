@@ -8,7 +8,7 @@
         Title="Roll Results" Height="500" Width="400">
     <Grid>
         <Viewbox Grid.Row="1" Stretch="UniformToFill">
-            <TextBox Background="DimGray" Grid.Row="1" Name="RollTextCopy" Width="1237" Height="1500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="72" Text="" IsReadOnly="True"/>
+            <TextBox Background="DarkGray" Grid.Row="1" Name="RollTextCopy" Width="1237" Height="1500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="72" Text="" IsReadOnly="True"/>
         </Viewbox>
     </Grid>
     
