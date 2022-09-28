@@ -337,7 +337,14 @@ namespace KiwiDiceRoller
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        /*
+        * Function: ClearButton_Click
+        * Description: Clear the text from the roll results
+        * Parameters: object sender, RoutedEventArgs e
+        * Returns: void
+        */
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             RollText.IsReadOnly = false; //enable writing
             RollText.Text = ""; //clear text

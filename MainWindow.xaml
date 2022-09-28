@@ -34,7 +34,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Viewbox Grid.Row="4" Grid.Column="5"  Margin="0,44,0,44" Grid.RowSpan="3">
+            <Viewbox Grid.Row="5" Grid.Column="5" >
                 <Button Name="rollButton" Content="Roll Dice!" IsEnabled="False" ToolTip="Roll the dice with the given properties" Click="RollButton_Click"/>
             </Viewbox>
 
@@ -89,14 +89,31 @@
                 <TextBox Name="DifficultyClass" MinWidth="25" Height="10" Width="20" FontSize="6" TextAlignment="Center" ToolTip="Optional. Needs to beat this number to succeed. Must be equal to or less than the number of sides + mod" TextChanged="DifficultyClass_TextChanged"/>
             </Viewbox>
 
-            <Viewbox Grid.Row="4" Grid.Column="7" Grid.RowSpan="3" Grid.ColumnSpan="3" StretchDirection="DownOnly">
+            <Viewbox Grid.Row="4" Grid.Column="7" Grid.RowSpan="3" Grid.ColumnSpan="3" StretchDirection="DownOnly" Stretch="UniformToFill">
                 <TextBox Background="DarkGray" Grid.Row="1" Name="RollText" Width="500" Height="500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="36" Text="" IsReadOnly="True"/>
 
             </Viewbox>
 
-            <Viewbox  Grid.Column="9" Grid.Row="3"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button Click="Button_Click" Content="Clear" Margin="0,0,5,0" Width="10" Height="5" FontSize="2" BorderThickness="0" Background="#FFDDDDDD"/>
-            </Viewbox>
+            <Grid Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.Row="1" Grid.Column="2">
+                    <Button Content="Clear" Name="Clear" Click="ClearButton_Click"/>
+                </Viewbox>
+                
+                
+            </Grid>
 
         </Grid>
     </DockPanel>
