@@ -46,7 +46,7 @@ namespace KiwiDiceRoller
         private int savedModifier = 0; //any modifier
         private int savedDifficultyClass = 0;
         private string savedAdvantage = kNoVantage; //advantage state
-        private bool savedModPerDie = false; //will the mod be added to each die?
+        private bool? savedModPerDie = false; //will the mod be added to each die?
 
 
         private bool ValidInput
@@ -85,7 +85,7 @@ namespace KiwiDiceRoller
             get { return savedAdvantage; }
         }
             
-        private bool SavedModPerDie
+        private bool? SavedModPerDie
         {
             set { savedModPerDie = value; }
             get { return savedModPerDie; }
@@ -144,7 +144,7 @@ namespace KiwiDiceRoller
         private void CheckInput()
         {           
             //Check all input
-            if(ValidDice == true && ValidSides == true && ValidMod == true && ValidDC == true && ValidDC == true)
+            if(ValidDice == true && ValidSides == true && ValidMod == true && ValidDC == true)
             {
                 validInput = true;
             }
@@ -152,6 +152,9 @@ namespace KiwiDiceRoller
             {
                 validInput = false;
             }
+
+            savedModPerDie = modPerDie.IsChecked;
+
 
             //get advantage state
             savedAdvantage = advantageState.SelectedIndex.ToString();
@@ -270,6 +273,17 @@ namespace KiwiDiceRoller
             CheckInput();
         }
 
+        /*
+       * Function: ModPerDie_Click
+       * Description: check for valid input
+       * Parameters: object sender, RoutedEventArgs e
+       * Returns: void
+       */
+        private void ModPerDie_Click(object sender, RoutedEventArgs e)
+        {
+            CheckInput();
+        }
+
 
         /*
        * Function: RollButton_Click
@@ -286,5 +300,7 @@ namespace KiwiDiceRoller
             rollScreen.Show();
 
         }
+
+        
     }
 }

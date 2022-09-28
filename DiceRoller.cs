@@ -22,7 +22,7 @@ namespace KiwiDiceRoller
         private int modifier = 0; //any modifier
         private int difficultyClass = 0;
         private string advantage = kNoVantage; //advantage state
-        private bool modPerDie = false; //will the mod be added to each die?
+        private bool? modPerDie = false; //will the mod be added to each die?
 
         internal int NumOfSides
         {
@@ -54,7 +54,7 @@ namespace KiwiDiceRoller
             set { advantage = value; }
         }
 
-        internal bool ModPerDie
+        internal bool? ModPerDie
         {
             get { return modPerDie; }
             set { modPerDie = value; }
@@ -64,10 +64,10 @@ namespace KiwiDiceRoller
         /*
         * Function: DiceRoller constructor
         * Description: Instantiates the diceroller with the given data. Data will be validated in the MainWindow so it can simply be carried over
-        * Parameters: int inputNumOfSides, int inputNumOfDice, int inputModifier, int inputDifficultyClass, char inputAdvantage, bool inputModPerDie
+        * Parameters: int inputNumOfSides, int inputNumOfDice, int inputModifier, int inputDifficultyClass, char inputAdvantage, bool? inputModPerDie
         * Returns: void
         */
-        internal DiceRoller(int inputNumOfSides, int inputNumOfDice, int inputModifier, int inputDifficultyClass, string inputAdvantage, bool inputModPerDie)
+        internal DiceRoller(int inputNumOfSides, int inputNumOfDice, int inputModifier, int inputDifficultyClass, string inputAdvantage, bool? inputModPerDie)
         {
             NumOfSides = inputNumOfSides;
             NumOfDice = inputNumOfDice;
@@ -96,8 +96,7 @@ namespace KiwiDiceRoller
                 int generatedNumWithMod = generatedNum + Modifier;
                 string tempResult = "";
 
-                tempResult += "Roll " + i.ToString() + ": "; //Roll #: 
-                runningTotal += generatedNumWithMod; 
+                tempResult += "Roll " + i.ToString() + ": "; //Roll #:                
                 tempResult += generatedNum.ToString(); //Roll#: ##
                 if (ModPerDie == true)
                 {
@@ -107,19 +106,41 @@ namespace KiwiDiceRoller
                     }
                     else if (Modifier < 0) //mod is negative
                     {
-                        tempResult += " - " + Modifier.ToString() + " = " + generatedNumWithMod.ToString();
+                        tempResult += " - " + (Modifier * -1).ToString() + " = " + generatedNumWithMod.ToString();
                     }
-
                     runningTotal += generatedNumWithMod;
-
                 }
                 else
                 {
                     runningTotal += generatedNum; //add the unmodified number to the running total
                 }
 
+                if(difficultyClass != 0)
+                {
+                    if(ModPerDie == true)
+                    {
+                        if(generatedNumWithMod > difficultyClass)
+                        {
+                            tempResult += " Success";
+                        }
+                        else
+                        {
+                            tempResult += " Failure";
+                        }
+                    }
+                    else
+                    {
+                        if (generatedNum > difficultyClass)
+                        {
+                            tempResult += " Success";
+                        }
+                        else
+                        {
+                            tempResult += " Failure";
+                        }
+                    }
+                }
                 results.Add(tempResult); //add the results to the list
-
             }
 
             if (ModPerDie == false && Modifier != 0) //if mod per die is false and mod is not 0 add the mod to the running total

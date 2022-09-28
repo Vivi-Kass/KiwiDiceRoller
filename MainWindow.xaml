@@ -8,14 +8,6 @@
         Title="Kiwi Dice Roller" Height="300" Width="400" Icon="F:\Pictures\Graphic design stuff\Kiwi logo\Kiwi D20 thick small.ico" Background="DimGray" MinWidth="400" MinHeight="300" Closed="Window_Closed">
 
     <DockPanel>
-        <Menu Background="DarkGray" DockPanel.Dock="Top">
-            <MenuItem Header="_Windows">
-                <MenuItem Header="_Saved Rolls List"/>
-                <MenuItem Header="_Recent Rolls List"/>
-            </MenuItem>
-        </Menu>
-
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*"/>
@@ -85,16 +77,24 @@
                 <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Language="en-ca" Text="Mod Per Die"/></TextBlock>
             </Viewbox>
             <Viewbox Grid.Row="2" Grid.Column="9">
-                <CheckBox Name="modPerDie" ToolTip="Should the mod be added to each die"/>
+                <CheckBox Name="modPerDie" ToolTip="Should the mod be added to each die" Click="ModPerDie_Click"/>
             </Viewbox>
 
 
-            <Viewbox  Grid.Row="4" Grid.Column="9" VerticalAlignment="Bottom">
+            <Viewbox  Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom">
                 <TextBlock  VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Text="Difficulty"/><LineBreak/><Run Text="Class (DC)"/></TextBlock>
             </Viewbox>
-            <Viewbox Grid.Row="5" Grid.Column="9">
+            <Viewbox Grid.Row="5" Grid.Column="1">
                 <TextBox Name="DifficultyClass" MinWidth="25" Height="10" Width="20" FontSize="6" TextAlignment="Center" ToolTip="Optional. Needs to beat this number to succeed. Must be equal to or less than the number of sides + mod" TextChanged="DifficultyClass_TextChanged"/>
             </Viewbox>
+
+            <Viewbox Grid.Row="4" Grid.Column="7" Grid.RowSpan="3" Grid.ColumnSpan="3" StretchDirection="DownOnly">
+                <TextBlock Text="sample"/>
+
+            </Viewbox>
+            
+            
+            
         </Grid>
 
 
