@@ -93,6 +93,11 @@
                 <TextBox Background="DarkGray" Grid.Row="1" Name="RollText" Width="500" Height="500" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" FontSize="36" Text="" IsReadOnly="True"/>
 
             </Viewbox>
+
+            <Viewbox  Grid.Column="9" Grid.Row="3"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Click="Button_Click" Content="Clear" Margin="0,0,5,0" Width="10" Height="5" FontSize="2" BorderThickness="0" Background="#FFDDDDDD"/>
+            </Viewbox>
+
         </Grid>
     </DockPanel>
 </Window>

@@ -338,6 +338,11 @@ namespace KiwiDiceRoller
 
         }
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RollText.IsReadOnly = false; //enable writing
+            RollText.Text = ""; //clear text
+            RollText.IsReadOnly = true; //disable writing
+        }
     }
 }
