@@ -185,6 +185,10 @@ namespace KiwiDiceRoller
             try
             {
                 SavedNumOfDice = Convert.ToUInt16(numOfDice.Text); //unsigned so it is positive
+                if (Convert.ToUInt16(numOfDice.Text) == 0) //can't roll 0 dice
+                {
+                    ValidDice = false;
+                }
 
             }
             catch (Exception)
@@ -209,6 +213,11 @@ namespace KiwiDiceRoller
             try
             {
                 SavedNumOfSides = Convert.ToUInt16(numOfSides.Text);
+
+                if (Convert.ToUInt16(numOfSides.Text) <= 1) //can't be 0 or 1 sided
+                {
+                    ValidSides = false;
+                }
             }
             catch (Exception)
             {
@@ -295,19 +304,20 @@ namespace KiwiDiceRoller
         {
             //give the dice the valid values           
             DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
-            if (advantageState.SelectedIndex.ToString() == kNoVantage) //no advantage or disadvantage
+            RollText.IsReadOnly = false; //enable writing
+            if (advantageState.SelectedIndex == 0) //0 is N/A
             {
                 PrintData(roll.RollNoVantage());
             }
-            else if (advantageState.SelectedIndex.ToString() == kAdvantage)
+            else if (advantageState.SelectedIndex == 1) //1 is Adv
             {
                 PrintData(roll.RollVantage(kAdvantage));
             }
-            else if (advantageState.SelectedIndex.ToString() == kDisadvantage)
+            else if (advantageState.SelectedIndex == 2) //2 is Disad
             {
                 PrintData(roll.RollVantage(kDisadvantage));
             }
-
+            RollText.IsReadOnly = true; //disable writing
 
         }
 
