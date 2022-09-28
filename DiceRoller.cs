@@ -89,6 +89,10 @@ namespace KiwiDiceRoller
             List<string> results = new List<string>(); //list of the results
             Random rndm = new Random(); //random number generator
             int runningTotal = 0;
+            int numOfSucc = 0;
+            int numOfFail = 0;
+            int numOfCritSucc = 0;
+            int numOfCritFail = 0;
 
             for (int i = 1; i <= numOfDice; i++)
             {
@@ -115,28 +119,38 @@ namespace KiwiDiceRoller
                     runningTotal += generatedNum; //add the unmodified number to the running total
                 }
 
+                if (generatedNum == 1) //check for nat 1
+                {
+                    numOfCritFail++;
+                }
+                else if (generatedNum == numOfSides) //check for crit success
+                {
+                    numOfCritSucc++;
+                }
+
+
                 if(difficultyClass != 0)
                 {
                     if(ModPerDie == true)
                     {
                         if(generatedNumWithMod > difficultyClass)
                         {
-                            tempResult += " Success";
+                            numOfSucc++;
                         }
                         else
                         {
-                            tempResult += " Failure";
+                            numOfFail++;
                         }
                     }
                     else
                     {
                         if (generatedNum > difficultyClass)
                         {
-                            tempResult += " Success";
+                            numOfSucc++;
                         }
                         else
                         {
-                            tempResult += " Failure";
+                            numOfFail++;
                         }
                     }
                 }
@@ -151,7 +165,10 @@ namespace KiwiDiceRoller
 
 
             results.Add("Total: " + runningTotal.ToString());
-
+            results.Add("Successes: " + numOfSucc.ToString());
+            results.Add("Failures: " + numOfFail.ToString());
+            results.Add("Critical Successes: " + numOfCritSucc.ToString());
+            results.Add("Critical Failures: " + numOfCritFail.ToString());
 
             return results;
         }
