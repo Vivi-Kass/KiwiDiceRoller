@@ -88,6 +88,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dice.cs" />
     <Compile Include="RollResultsPopOut.xaml.cs">
       <DependentUpon>RollResultsPopOut.xaml</DependentUpon>
     </Compile>

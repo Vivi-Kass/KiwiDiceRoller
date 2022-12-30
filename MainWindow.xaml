@@ -75,7 +75,7 @@
 
 
             <Viewbox  Grid.Row="1" Grid.Column="9" VerticalAlignment="Bottom">
-                <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Language="en-ca" Text="Mod Per Die"/></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Text="Mod "/><LineBreak/><Run Text="Each Die"/></TextBlock>
             </Viewbox>
             <Viewbox Grid.Row="2" Grid.Column="9">
                 <CheckBox Name="modPerDie" ToolTip="Should the mod be added to each die" Click="ModPerDie_Click"/>
