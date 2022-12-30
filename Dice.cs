@@ -30,13 +30,17 @@ namespace KiwiDiceRoller
         private int numOfSides;
         private int modifier;
         private int difficultyClass;
-        private string advtageState;
+        private string advantageState;
         private bool modEachDie;
 
         private int rollA;
         private int rollB;
         private int rollTotal;
 
+        private int critSuccesses;
+        private int critFails;
+        private int successes;
+        private int failures;
 
         /*
          * Function    : Dice constructor
@@ -50,7 +54,7 @@ namespace KiwiDiceRoller
             numOfSides = newNumOfSides;
             modifier = newModifier;
             difficultyClass = newDifficultyClass;
-            advtageState = newAdvantageState;
+            advantageState = newAdvantageState;
             modEachDie = newModEachDie;
 
             //roles with mods
@@ -58,6 +62,11 @@ namespace KiwiDiceRoller
             rollB = 0;
 
             rollTotal = 0;
+
+            critSuccesses = 0;
+            critFails = 0;
+            successes = 0;
+            failures = 0;
         }
 
         /*
@@ -77,12 +86,19 @@ namespace KiwiDiceRoller
                 string currentRollString = "";
                 Roll(rndm);
                 currentRollString = GenerateString(currentRollString, kRollState, rollIndex);
+                CheckCrits();
 
                 if (modEachDie == true && modifier != 0) //if true and there is a mod
                 {
                     AddModToDie();
                     currentRollString = GenerateString(currentRollString, kModPerRollState);
                 }
+
+                if (difficultyClass > 0)
+                {
+                    CheckSuccess();
+                }
+                
 
                 AddTotal();
 
@@ -114,7 +130,7 @@ namespace KiwiDiceRoller
         {          
             rollA = rndm.Next(1, (numOfSides + 1)); //between 1 and sides+1 because next is not inclusive for max
 
-            if (advtageState != kNoVantage) //roll a second die if at some sort of vantage state
+            if (advantageState != kNoVantage) //roll a second die if at some sort of vantage state
             {
                 rollB = rndm.Next(1, (numOfSides + 1)); //between 1 and sides+1 because next is not inclusive for max
             }         
@@ -130,7 +146,7 @@ namespace KiwiDiceRoller
         {
             rollA += modifier; //add mod to rollA
 
-            if (advtageState != kNoVantage) //if at some sort of vantage, add to rollB
+            if (advantageState != kNoVantage) //if at some sort of vantage, add to rollB
             {
                 rollB += modifier;
             }
@@ -145,7 +161,7 @@ namespace KiwiDiceRoller
          */
         private void AddTotal ()
         {
-            if (advtageState == kAdvantage)
+            if (advantageState == kAdvantage)
             {
                 if (rollA >= rollB)
                 {
@@ -156,7 +172,7 @@ namespace KiwiDiceRoller
                     rollTotal += rollB;
                 }
             }
-            else if (advtageState == kDisadvantage)
+            else if (advantageState == kDisadvantage)
             {
                 if (rollA <= rollB)
                 {
@@ -186,7 +202,7 @@ namespace KiwiDiceRoller
             if (currentState == kRollState)
             {
                 
-                if (advtageState != kNoVantage) //Second die is rolled
+                if (advantageState != kNoVantage) //Second die is rolled
                 {
                     originalString = "Roll " + rollNumber + "A: " + rollA;
                     originalString += "\nRoll " + rollNumber + "B: " + rollB;
@@ -200,7 +216,7 @@ namespace KiwiDiceRoller
             else if (currentState == kModPerRollState)
             {
                 
-                if (advtageState != kNoVantage) //Second die is rolled
+                if (advantageState != kNoVantage) //Second die is rolled
                 {
                     int newLine = originalString.IndexOf('\n'); //find new line
 
@@ -217,5 +233,108 @@ namespace KiwiDiceRoller
             return originalString;
         }
 
+        /*
+         * Function    : CheckSuccess
+         * Description	: Checks if the current role just succeeded or failed and updates the appropriate tally
+         * Parameters	: void
+         * Return		: void
+         */
+        private void CheckSuccess()
+        {
+            if (advantageState == kNoVantage)
+            {
+                if (rollA >= difficultyClass)//meet or beat
+                {
+                    successes++;
+                }
+                else
+                {
+                    failures++;
+                }
+            }
+            else if (advantageState == kAdvantage)
+            {
+                if (rollA >= rollB && rollA >= difficultyClass)
+                {
+                    successes++;
+                }
+                else if (rollB >= difficultyClass)
+                {
+                    successes++;
+                }
+                else
+                {
+                    failures++;
+                }
+            }
+            else if (advantageState == kDisadvantage)
+            {
+                if (rollA <= rollB && rollA >= difficultyClass)
+                {
+                    successes++;
+                }
+                else if (rollB < rollA && rollB >= difficultyClass)
+                {
+                    successes++;
+                }
+                else
+                {
+                    failures++;
+                }
+            }
+        }
+
+
+        /*
+         * Function    : CheckCrits
+         * Description	: Adds to the crit success and crit fails tally
+         * Parameters	: void
+         * Return		: void
+         */
+        private void CheckCrits()
+        {
+            if (advantageState == kNoVantage)
+            {
+                if (rollA == numOfSides)//roll the same as the number of sides
+                {
+                    critSuccesses++;
+                }
+                else if (rollA == 1) //nat 1
+                {
+                    critFails++;
+                }
+            }
+            else if (advantageState == kAdvantage)
+            {
+                if (rollA >= rollB && rollA == numOfSides)
+                {
+                    critSuccesses++;
+                }
+                else if (rollB == numOfSides)
+                {
+                    critSuccesses++;
+                }
+                else if (rollA == 1 && rollB == 1)//when at advantage, both would have to a be 1 in order to crit fail
+                {
+                    critFails++;
+                }
+            }
+            else if (advantageState == kDisadvantage)
+            {
+                if (rollA == 1 || rollB == 1) //if either get a nat 1, then it's a crit fail
+                {
+                    critFails++;
+                }
+                else if (rollA <= rollB && rollA == numOfSides)
+                {
+                    critSuccesses++;
+                }
+                else if (rollB < rollA && rollB == numOfSides)
+                {
+                    critSuccesses++;
+                }
+
+            }
+        }
     }
 }
