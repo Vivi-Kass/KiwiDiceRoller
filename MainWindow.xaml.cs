@@ -157,7 +157,7 @@ namespace KiwiDiceRoller
 
 
             //get advantage state
-            savedAdvantage = advantageState.SelectedIndex.ToString();
+            savedAdvantage = ((ComboBoxItem)advantageState.SelectedItem).Content.ToString();
 
             if (validInput == true)
             {
@@ -305,29 +305,11 @@ namespace KiwiDiceRoller
             //give the dice the valid values
             //int newNumOfDice, int newNumOfSides, int newModifier = 0, int newDifficultyClass = 0, char newAdvantageState = kNoVantage, bool newModEachDie = false
             Dice dice = new Dice(savedNumOfDice, savedNumOfSides, savedModifier, savedDifficultyClass, savedAdvantage, savedModPerDie);
-            PrintData(dice.GenerateRolls());
-
-
-            //DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
-
 
             RollText.IsReadOnly = false; //enable writing
             ClearRollResults(); //clear the results
 
-            /*
-            if (advantageState.SelectedIndex == 0) //0 is N/A
-            {
-                PrintData(roll.RollNoVantage());
-            }
-            else if (advantageState.SelectedIndex == 1) //1 is Adv
-            {
-                PrintData(roll.RollVantage(kAdvantage));
-            }
-            else if (advantageState.SelectedIndex == 2) //2 is Disad
-            {
-                PrintData(roll.RollVantage(kDisadvantage));
-            }
-            */
+            PrintData(dice.GenerateRolls()); //generate the rolls and print them
             RollText.IsReadOnly = true; //disable writing
 
         }

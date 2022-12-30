@@ -23,6 +23,9 @@ namespace KiwiDiceRoller
         const string kDisadvantage = "Disad";
         const string kNoVantage = "N/A";
 
+        const int kRollState = 1;
+        const int kModPerRollState = 2;
+
         private int numOfDice;
         private int numOfSides;
         private int modifier;
@@ -65,27 +68,36 @@ namespace KiwiDiceRoller
          */
         internal List<string>  GenerateRolls()
         {
-            List<string> results = new List<string>(); //list of the results
-            string currentRoll = "";
+            List<string> results = new List<string>(); //list of the results            
+            Random rndm = new Random(); //random number generator
 
             //For each die to roll
-            for (int i = numOfDice; i >= numOfDice; i--)
+            for (int rollIndex = 1; rollIndex <= numOfDice; rollIndex++)
             {
-                Roll();
+                string currentRollString = "";
+                Roll(rndm);
+                currentRollString = GenerateString(currentRollString, kRollState, rollIndex);
 
                 if (modEachDie == true && modifier != 0) //if true and there is a mod
                 {
                     AddModToDie();
+                    currentRollString = GenerateString(currentRollString, kModPerRollState);
                 }
 
                 AddTotal();
 
+                results.Add(currentRollString); //add the current roll string to the results string
             }
 
             if (modEachDie == false && modifier != 0) //if not moding each die. Add the mod to the total at the end if applicable
             {
                 rollTotal += modifier;
+
+                results.Add("Modifier for total: " + modifier.ToString());
             }
+
+
+            results.Add("Total: " + rollTotal.ToString());
 
 
             return results;
@@ -98,10 +110,8 @@ namespace KiwiDiceRoller
          * Parameters	: void
          * Return		: void
          */
-        private void Roll()
-        {
-            Random rndm = new Random(); //random number generator
-
+        private void Roll(Random rndm)
+        {          
             rollA = rndm.Next(1, (numOfSides + 1)); //between 1 and sides+1 because next is not inclusive for max
 
             if (advtageState != kNoVantage) //roll a second die if at some sort of vantage state
@@ -164,7 +174,50 @@ namespace KiwiDiceRoller
         }
 
 
+        /*
+         * Function    : AddTotal
+         * Description	: Adds the appropriate roll to the total. Based on the vantage state
+         * Parameters	: void
+         * Return		: void
+         */
+        private string GenerateString(string originalString, int currentState, int rollNumber = 0)
+        {
 
+            if (currentState == kRollState)
+            {
+                
+                if (advtageState != kNoVantage) //Second die is rolled
+                {
+                    originalString = "Roll " + rollNumber + "A:" + rollA;
+                    originalString += "\nRoll " + rollNumber + "B:" + rollB;
+                }
+                else
+                {
+                    originalString = "Roll " + rollNumber + ": " + rollA; //no letter
+                }
+
+            }
+            else if (currentState == kModPerRollState)
+            {
+                
+                if (advtageState != kNoVantage) //Second die is rolled
+                {
+                    int newLine = originalString.IndexOf('\n'); //find new line
+
+                    originalString.Insert((newLine - 1), originalString += " + " + modifier + " = " + rollA); //insert the roll mod and total before the newline
+                    originalString += " + " + modifier + " = " + rollB; //add rollB mod and total at the end
+                }
+                else //easy to add
+                {
+                    originalString += " + " + modifier + " = " + rollA;
+                }
+
+
+
+            }
+
+            return originalString;
+        }
 
     }
 }
