@@ -204,7 +204,7 @@ namespace KiwiDiceRoller
                 {
                     int newLine = originalString.IndexOf('\n'); //find new line
 
-                    originalString.Insert((newLine - 1), originalString += " + " + modifier + " = " + rollA); //insert the roll mod and total before the newline
+                    originalString = originalString.Insert(newLine, " + " + modifier + " = " + rollA); //insert the roll mod and total before the newline
                     originalString += " + " + modifier + " = " + rollB; //add rollB mod and total at the end
                 }
                 else //easy to add
