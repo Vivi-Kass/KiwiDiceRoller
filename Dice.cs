@@ -115,6 +115,14 @@ namespace KiwiDiceRoller
 
             results.Add("Total: " + rollTotal.ToString());
 
+            if (difficultyClass > 0)
+            {
+                results.Add("Successes: " + successes);
+                results.Add("Failures: " + failures);
+            }
+
+            results.Add("Crit Successes " + critSuccesses);
+            results.Add("Crit Failures " + critFails);
 
             return results;
         }
