@@ -66,7 +66,7 @@
                 <TextBlock VerticalAlignment="Bottom" TextAlignment="Center" Width="65" Height="35"><Run Language="en-ca" Text="Advantage"/></TextBlock>
             </Viewbox>
             <Viewbox Grid.Row="2" Grid.Column="7">
-                <ComboBox Name="advantageState" MinWidth="60" MinHeight="25" SelectedIndex="0" ToolTip="A for advantage, D for disadvantage, N/A for neither. Will show each pair of dice rolled.">
+                <ComboBox Name="advantageState" MinWidth="60" MinHeight="25" SelectedIndex="0" ToolTip="A for advantage, D for disadvantage, N/A for neither. Will show each pair of dice rolled." SelectionChanged="advantageState_SelectionChanged">
                     <ComboBoxItem Content="N/A"/>
                     <ComboBoxItem Content="Adv"/>
                     <ComboBoxItem Content="Disad"/>

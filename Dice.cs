@@ -188,8 +188,8 @@ namespace KiwiDiceRoller
                 
                 if (advtageState != kNoVantage) //Second die is rolled
                 {
-                    originalString = "Roll " + rollNumber + "A:" + rollA;
-                    originalString += "\nRoll " + rollNumber + "B:" + rollB;
+                    originalString = "Roll " + rollNumber + "A: " + rollA;
+                    originalString += "\nRoll " + rollNumber + "B: " + rollB;
                 }
                 else
                 {
@@ -211,8 +211,6 @@ namespace KiwiDiceRoller
                 {
                     originalString += " + " + modifier + " = " + rollA;
                 }
-
-
 
             }
 

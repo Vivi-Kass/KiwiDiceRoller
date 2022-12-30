@@ -368,5 +368,16 @@ namespace KiwiDiceRoller
             }
             
         }
+
+        /*
+         * Function    : advantageState_SelectionChanged
+         * Description	: Updates the saved advantage state when the selection of the advantage state changes
+         * Parameters	: object sender, SelectionChangedEventArgs e
+         * Return		:  void
+         */
+        private void advantageState_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            savedAdvantage = ((ComboBoxItem)advantageState.SelectedItem).Content.ToString();
+        }
     }
 }
