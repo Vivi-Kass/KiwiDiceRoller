@@ -19,15 +19,15 @@ namespace KiwiDiceRoller
      */
     internal class Dice
     {
-        const char kAdvantage = 'a';
-        const char kDisadvantage = 'd';
-        const char kNoVantage = 'n';
+        const string kAdvantage = "Adv";
+        const string kDisadvantage = "Disad";
+        const string kNoVantage = "N/A";
 
         private int numOfDice;
         private int numOfSides;
         private int modifier;
         private int difficultyClass;
-        private char advtageState;
+        private string advtageState;
         private bool modEachDie;
 
         private int rollA;
@@ -41,7 +41,7 @@ namespace KiwiDiceRoller
          * Parameters	: int newNumOfDice, int newNumOfSides, int newModifier = 0, int newDifficultyClass = 0, char newAdvantageState = kNoVantage, bool newModEachDie = false
          * Return		: Nothing
          */
-        Dice(int newNumOfDice, int newNumOfSides, int newModifier = 0, int newDifficultyClass = 0, char newAdvantageState = kNoVantage, bool newModEachDie = false)
+        internal Dice(int newNumOfDice, int newNumOfSides, int newModifier = 0, int newDifficultyClass = 0, string newAdvantageState = kNoVantage, bool newModEachDie = false)
         {
             numOfDice = newNumOfDice;
             numOfSides = newNumOfSides;
@@ -63,7 +63,7 @@ namespace KiwiDiceRoller
          * Parameters	: void
          * Return		: void
          */
-        List<string> GenerateRolls()
+        internal List<string>  GenerateRolls()
         {
             List<string> results = new List<string>(); //list of the results
             string currentRoll = "";
@@ -98,7 +98,7 @@ namespace KiwiDiceRoller
          * Parameters	: void
          * Return		: void
          */
-        void Roll()
+        private void Roll()
         {
             Random rndm = new Random(); //random number generator
 
@@ -116,7 +116,7 @@ namespace KiwiDiceRoller
          * Parameters	: void
          * Return		: void
          */
-        void AddModToDie()
+        private void AddModToDie()
         {
             rollA += modifier; //add mod to rollA
 
@@ -133,7 +133,7 @@ namespace KiwiDiceRoller
          * Parameters	: void
          * Return		: void
          */
-        void AddTotal ()
+        private void AddTotal ()
         {
             if (advtageState == kAdvantage)
             {

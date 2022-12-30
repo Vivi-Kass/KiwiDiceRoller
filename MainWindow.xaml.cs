@@ -46,7 +46,7 @@ namespace KiwiDiceRoller
         private int savedModifier = 0; //any modifier
         private int savedDifficultyClass = 0;
         private string savedAdvantage = kNoVantage; //advantage state
-        private bool? savedModPerDie = false; //will the mod be added to each die?
+        private bool savedModPerDie = false; //will the mod be added to each die?
 
 
         private bool ValidInput
@@ -85,7 +85,7 @@ namespace KiwiDiceRoller
             get { return savedAdvantage; }
         }
             
-        private bool? SavedModPerDie
+        private bool SavedModPerDie
         {
             set { savedModPerDie = value; }
             get { return savedModPerDie; }
@@ -153,7 +153,7 @@ namespace KiwiDiceRoller
                 validInput = false;
             }
 
-            savedModPerDie = modPerDie.IsChecked;
+            savedModPerDie = (bool)modPerDie.IsChecked;
 
 
             //get advantage state
@@ -302,10 +302,19 @@ namespace KiwiDiceRoller
        */
         private void RollButton_Click(object sender, RoutedEventArgs e)
         {
-            //give the dice the valid values           
-            DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
+            //give the dice the valid values
+            //int newNumOfDice, int newNumOfSides, int newModifier = 0, int newDifficultyClass = 0, char newAdvantageState = kNoVantage, bool newModEachDie = false
+            Dice dice = new Dice(savedNumOfDice, savedNumOfSides, savedModifier, savedDifficultyClass, savedAdvantage, savedModPerDie);
+            PrintData(dice.GenerateRolls());
+
+
+            //DiceRoller roll = new DiceRoller(SavedNumOfSides, SavedNumOfDice, SavedModifier, SavedDifficultyClass, SavedAdvantage, SavedModPerDie);
+
+
             RollText.IsReadOnly = false; //enable writing
             ClearRollResults(); //clear the results
+
+            /*
             if (advantageState.SelectedIndex == 0) //0 is N/A
             {
                 PrintData(roll.RollNoVantage());
@@ -318,6 +327,7 @@ namespace KiwiDiceRoller
             {
                 PrintData(roll.RollVantage(kDisadvantage));
             }
+            */
             RollText.IsReadOnly = true; //disable writing
 
         }
