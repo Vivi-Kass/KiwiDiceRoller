@@ -306,11 +306,9 @@ namespace KiwiDiceRoller
             //int newNumOfDice, int newNumOfSides, int newModifier = 0, int newDifficultyClass = 0, char newAdvantageState = kNoVantage, bool newModEachDie = false
             Dice dice = new Dice(savedNumOfDice, savedNumOfSides, savedModifier, savedDifficultyClass, savedAdvantage, savedModPerDie);
 
-            RollText.IsReadOnly = false; //enable writing
             ClearRollResults(); //clear the results
 
             PrintData(dice.GenerateRolls()); //generate the rolls and print them
-            RollText.IsReadOnly = true; //disable writing
 
         }
 
@@ -339,9 +337,7 @@ namespace KiwiDiceRoller
         */
         private void ClearRollResults()
         {
-            RollText.IsReadOnly = false; //enable writing
             RollText.Text = ""; //clear text
-            RollText.IsReadOnly = true; //disable writing
         }
 
 
@@ -358,13 +354,9 @@ namespace KiwiDiceRoller
             {
                 RollResultsPopOut rrpo = new RollResultsPopOut(); //make the new window
                 rrpo.Show(); //show the new window
-                rrpo.RollTextCopy.IsReadOnly = false;
                 rrpo.RollTextCopy.Text = RollText.Text;
-                rrpo.RollTextCopy.IsReadOnly = true;
 
-                RollText.IsReadOnly = false;
                 RollText.Text = "";
-                RollText.IsReadOnly = true;
             }
             
         }
