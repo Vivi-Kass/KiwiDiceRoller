@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 namespace KiwiDiceRoller
 {
    
-
-
     internal class DiceRoller
     {
         //advantage (A), Disadvantage (D), None (N)    
