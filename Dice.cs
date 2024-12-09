@@ -1,7 +1,7 @@
 ﻿/*
  * File:            Dice.cs
- * Project:         Kiwi Dice Roller
- * Programmer:      Keiran Morton
+ * Project:         Vivi Dice Roller
+ * Programmer:      Vivian Morton
  * First Version:   30/12/2022 (dd/mm/yyyy)
  * Description: This file contains the revamped logic for the dice rolling component of the program.
  */
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KiwiDiceRoller
+namespace ViviDiceRoller
 {
     /*
      * Class       : Dice
