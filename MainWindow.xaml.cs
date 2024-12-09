@@ -1,7 +1,7 @@
 ﻿/*
  * File: MainWindow.xaml.cs
- * Project: KiwiDiceRoller
- * Programmer: Keiran Morton
+ * Project: ViviDiceRoller
+ * Programmer: Vivian Morton
  * First Version:  (26/09/2022)
  * Description: Desinged in VS 2022 with WPD in .NET Framework 4.8. This program is a simple dice rolling application specialized for Dungeons and Dragons 5th edition.
  */
@@ -21,7 +21,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 
-namespace KiwiDiceRoller
+namespace ViviDiceRoller
 {
      /*
      * Name: MainNotepad

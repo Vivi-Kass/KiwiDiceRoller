@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KiwiDiceRoller", "KiwiDiceRoller.csproj", "{DE65645D-B08C-49D3-8B7C-05AF1E2C3915}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViviDiceRoller", "ViviDiceRoller.csproj", "{DE65645D-B08C-49D3-8B7C-05AF1E2C3915}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
